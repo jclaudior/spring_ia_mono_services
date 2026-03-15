@@ -16,11 +16,11 @@ public class ApplicationPersistenceAdapter implements ApplicationRepositoryPort 
 
     @Override
     public Application save(Application application) {
-        return null;
+        return repository.save(application);
     }
 
     @Override
     public Optional<Application> findById(UUID id) {
-        return Optional.empty();
+        return repository.findById(id);
     }
 }
