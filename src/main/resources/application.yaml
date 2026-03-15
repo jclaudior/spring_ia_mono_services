@@ -8,9 +8,17 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: none   # Cria tabelas automaticamente no startup e apaga no shutdown
+      ddl-auto: create-drop   # Cria tabelas automaticamente no startup e apaga no shutdown
+    defer-datasource-initialization: true
     show-sql: true            # Mostra os SQLs gerados
     properties:
       hibernate:
         format_sql: true
+  sql:
+    init:
+      mode: always            # Sempre executa scripts de inicialização
+      data-locations: classpath:database/loaddata.sql      # Se quiser popular dados
 
+server:
+  servlet:
+    context-path: /mono_services/v1
