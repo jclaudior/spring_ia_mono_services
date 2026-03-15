@@ -1,3 +1,16 @@
 spring:
   application:
     name: monoservices
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none   # Cria tabelas automaticamente no startup e apaga no shutdown
+    show-sql: true            # Mostra os SQLs gerados
+    properties:
+      hibernate:
+        format_sql: true
+
