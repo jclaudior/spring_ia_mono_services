@@ -4,6 +4,17 @@ INSERT INTO companies (id, name) VALUES
                                      ('a7420206-c5f7-4a0a-88e8-c095c91109ea', 'Finance Solutions'),
                                      ('a7420206-c5f7-4a0a-88e8-c095c91109eb', 'Health Systems');
 
+-- Popula usuários
+INSERT INTO users (id, name) VALUES
+                                 ('b7420206-c5f7-4a0a-88e8-c095c91109e1', 'João Silva'),
+                                 ('b7420206-c5f7-4a0a-88e8-c095c91109e2', 'Maria Souza');
+
+-- Vincula usuários às empresas
+INSERT INTO company_users (company_id, user_id) VALUES
+                                                    ('a7420206-c5f7-4a0a-88e8-c095c91109e9', 'b7420206-c5f7-4a0a-88e8-c095c91109e1'),
+                                                    ('a7420206-c5f7-4a0a-88e8-c095c91109ea', 'b7420206-c5f7-4a0a-88e8-c095c91109e1'),
+                                                    ('a7420206-c5f7-4a0a-88e8-c095c91109eb', 'b7420206-c5f7-4a0a-88e8-c095c91109e2');
+
 -- Popula produtos
 INSERT INTO products (id, name) VALUES
                                     ('a1420206-c5f7-4a0a-88e8-c095c91109e7', 'PIX'),
@@ -13,16 +24,16 @@ INSERT INTO products (id, name) VALUES
 
 -- Popula certificados
 INSERT INTO certificates (id, fingerprint, valid_until) VALUES
-                                                            ('a7420206-c5f7-4a0a-88e8-c095291109e7',  uuid_generate_v4(), now() + interval '1 year'),
+                                                            ('a7420206-c5f7-4a0a-88e8-c095291109e7', uuid_generate_v4(), now() + interval '1 year'),
                                                             ('a7420206-c527-4a0a-88e8-c095c91109e7', uuid_generate_v4(), now() + interval '2 year'),
-                                                            ('a7420206-c5f7-4a0a-81e8-c095c91109e7',  uuid_generate_v4(), now() + interval '1 year');
+                                                            ('a7420206-c5f7-4a0a-81e8-c095c91109e7', uuid_generate_v4(), now() + interval '1 year');
 
--- Popula aplicações (agora com certificate_id)
+-- Popula aplicações
 INSERT INTO applications (id, name, company_id, client_id, client_secret, certificate_id, created_at, updated_at)
 VALUES
-    ('a7420206-c5f7-4a0a-81e8-c095c91109ec',  'Teste App 1', 'a7420206-c5f7-4a0a-88e8-c095c91109e9', uuid_generate_v4(), uuid_generate_v4(), 'a7420206-c5f7-4a0a-88e8-c095291109e7', now(), now()),
+    ('a7420206-c5f7-4a0a-81e8-c095c91109ec', 'Teste App 1', 'a7420206-c5f7-4a0a-88e8-c095c91109e9', uuid_generate_v4(), uuid_generate_v4(), 'a7420206-c5f7-4a0a-88e8-c095291109e7', now(), now()),
     ('a7420206-c5f7-4a0a-81e8-c095c91109ed', 'Teste App 2', 'a7420206-c5f7-4a0a-88e8-c095c91109e9', uuid_generate_v4(), uuid_generate_v4(), 'a7420206-c527-4a0a-88e8-c095c91109e7', now(), now()),
-    ('a7420206-c5f7-4a0a-81e8-c095c91109ee',  'Teste App 3', 'a7420206-c5f7-4a0a-88e8-c095c91109eb', uuid_generate_v4(), uuid_generate_v4(), 'a7420206-c5f7-4a0a-81e8-c095c91109e7', now(), now());
+    ('a7420206-c5f7-4a0a-81e8-c095c91109ee', 'Teste App 3', 'a7420206-c5f7-4a0a-88e8-c095c91109eb', uuid_generate_v4(), uuid_generate_v4(), 'a7420206-c5f7-4a0a-81e8-c095c91109e7', now(), now());
 
 -- Popula aplicações x produtos
 INSERT INTO application_products (application_id, product_id)

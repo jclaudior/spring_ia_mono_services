@@ -6,16 +6,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "companies")
+@Table(name = "users")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Company {
+public class User {
     @Id
     @GeneratedValue
     @Column(name = "id", columnDefinition = "uuid", updatable = false, nullable = false)
@@ -23,12 +22,4 @@ public class Company {
 
     @Column(name = "name", nullable = false)
     private String name;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "company_users",
-            joinColumns = @JoinColumn(name = "company_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private Set<User> users;
 }

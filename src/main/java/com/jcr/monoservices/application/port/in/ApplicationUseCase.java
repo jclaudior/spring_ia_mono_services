@@ -1,11 +1,14 @@
 package com.jcr.monoservices.application.port.in;
 
-import com.jcr.monoservices.domain.model.Application;
+import com.jcr.monoservices.domain.model.dto.ApplicationDTO;
+import com.jcr.monoservices.domain.model.dto.PaginationApplicationDTO;
+import com.jcr.monoservices.domain.specification.ApplicationSpec;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ApplicationUseCase {
-    Application getById(UUID id);
+    ApplicationDTO getById(UUID id);
 
-    Application create(Application application);
+    PaginationApplicationDTO pageable(ApplicationSpec spec, int limit, int offset, List<String> sort);
 }

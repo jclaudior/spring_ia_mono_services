@@ -6,29 +6,25 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "companies")
+@Table(name = "invites")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Company {
+public class Invite {
     @Id
     @GeneratedValue
     @Column(name = "id", columnDefinition = "uuid", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "email", nullable = false)
+    private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "company_users",
-            joinColumns = @JoinColumn(name = "company_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private Set<User> users;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
 }
+
